@@ -158,7 +158,7 @@ defmodule Blockchain.Blocktree do
       iex> tree = Blockchain.Blocktree.new_tree()
       iex> {:ok, tree_1} = Blockchain.Blocktree.verify_and_add_block(tree, block_1, db)
       iex> Blockchain.Blocktree.verify_and_add_block(tree_1, block_2, db)
-      {:invalid, [:invalid_difficulty, :invalid_gas_limit, :child_timestamp_invalid]}
+      {:invalid, [:invalid_gas_limit, :child_timestamp_invalid]}
   """
   @spec verify_and_add_block(t, Block.t, MerklePatriciaTree.DB.db) :: {:ok, t} | {:invalid, [atom()]}
   def verify_and_add_block(blocktree, block, db) do
