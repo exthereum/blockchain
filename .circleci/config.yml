@@ -18,8 +18,6 @@ jobs:
       - run: mix local.hex --force
       - run: mix local.rebar --force
       - run: mix deps.get
-      # TODO: The following step shouldn't be necessary.
-      - run: cd deps/libsecp256k1 && rebar compile
 
       #TODO: uncomment after fixing code style
       # - run: mix credo
