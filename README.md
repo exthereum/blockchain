@@ -8,7 +8,6 @@ Exthereum's blocks are specified in a variety of sections throughout [the yellow
 
 ```bash
 export "CFLAGS=-I/usr/local/include -L/usr/local/lib"
-cd deps/libsecp256k1 && rebar compile
 mix compile
 ```
 
