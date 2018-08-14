@@ -238,18 +238,18 @@ defmodule Blockchain.Transaction do
         {:invalid, :invalid_sender}
 
       {:ok, sender_address} ->
-        case Account.get_account(state, sender_address) do
-          nil ->
-            {:invalid, :missing_account}
+        sender_account = Account.get_account(state, sender_address)
 
-          sender_account ->
-            cond do
-              sender_account.nonce != trx.nonce -> {:invalid, :nonce_mismatch}
-              g_0 > trx.gas_limit -> {:invalid, :insufficient_intrinsic_gas}
-              v_0 > sender_account.balance -> {:invalid, :insufficient_balance}
-              trx.gas_limit > Header.available_gas(block_header) -> {:invalid, :over_gas_limit}
-              true -> :valid
-            end
+        if sender_account do
+          cond do
+            sender_account.nonce != trx.nonce -> {:invalid, :nonce_mismatch}
+            g_0 > trx.gas_limit -> {:invalid, :insufficient_intrinsic_gas}
+            v_0 > sender_account.balance -> {:invalid, :insufficient_balance}
+            trx.gas_limit > Header.available_gas(block_header) -> {:invalid, :over_gas_limit}
+            true -> :valid
+          end
+        else
+          {:invalid, :missing_account}
         end
     end
   end
