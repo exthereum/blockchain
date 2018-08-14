@@ -34,9 +34,9 @@ defmodule Blockchain.TransactionTest do
 
     if src_data["expect"] == "invalid" do
       # TODO: Include checks of "invalid" tests
-      Logger.debug(
+      Logger.debug(fn ->
         "Skipping `invalid` transaction test: TransactionTests - #{test_subset} - #{test_name}"
-      )
+      end)
 
       nil
     else
@@ -66,11 +66,11 @@ defmodule Blockchain.TransactionTest do
 
     if src_data["expect"] == "invalid" do
       # TODO: Include checks of "invalid" tests
-      Logger.debug(
+      Logger.debug(fn ->
         "Skipping invalid transaction test: TransactionTests/Homestead - #{test_subset} - #{
           test_name
         }"
-      )
+      end)
 
       nil
     else
@@ -104,11 +104,11 @@ defmodule Blockchain.TransactionTest do
 
     if src_data["expect"] == "invalid" do
       # TODO: Include checks of "invalid" tests
-      Logger.debug(
+      Logger.debug(fn ->
         "Skipping invalid transaction test: TransactionTests/EIP555 - #{test_subset} - #{
           test_name
         }"
-      )
+      end)
 
       nil
     else
@@ -170,10 +170,18 @@ defmodule Blockchain.TransactionTest do
         }
         |> Blockchain.Transaction.Signature.sign_transaction(private_key)
 
+      trie = MerklePatriciaTree.Trie.new(MerklePatriciaTree.Test.random_ets_db())
+
+      account =
+        Blockchain.Account.put_account(trie, sender, %Blockchain.Account{
+          balance: 400_000,
+          nonce: 5
+        })
+
       {state, gas_used, logs} =
-        MerklePatriciaTree.Trie.new(MerklePatriciaTree.Test.random_ets_db())
-        |> Blockchain.Account.put_account(sender, %Blockchain.Account{balance: 400_000, nonce: 5})
-        |> Blockchain.Transaction.execute_transaction(trx, %Block.Header{beneficiary: beneficiary})
+        Blockchain.Transaction.execute_transaction(account, trx, %Block.Header{
+          beneficiary: beneficiary
+        })
 
       assert gas_used == 53004
       assert logs == ""

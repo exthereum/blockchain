@@ -1,4 +1,8 @@
 defmodule Blockchain.Bloom do
+  @moduledoc """
+  Utility reducing the content of blockchain domain objects, such as logs into bloom filter hashes.
+  """
+
   use Bitwise
 
   @spec create(binary()) :: integer()

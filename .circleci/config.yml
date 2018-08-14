@@ -19,7 +19,7 @@ jobs:
       - run: mix local.hex --force
       - run: mix deps.get
 
-      # - run: mix credo
+      - run: mix credo
       - run: mix format --check-formatted
 
       - run: mix test
