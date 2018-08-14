@@ -21,9 +21,8 @@ jobs:
       # TODO: The following step shouldn't be necessary.
       - run: cd deps/libsecp256k1 && rebar compile
 
-      #TODO: uncomment after fixing code style
       # - run: mix credo
-      # - run: mix format --check-formatted
+      - run: mix format --check-formatted
 
       - run: mix test
 
