@@ -8,7 +8,7 @@ defmodule RopstenTest do
 
   use ExUnit.Case, async: true
 
-  @n 11
+  @n 12
 
   setup_all do
     blocks =
