@@ -4,7 +4,7 @@ defmodule Blockchain.Mixfile do
   def project do
     [
       app: :blockchain,
-      version: "0.1.7",
+      version: "0.1.8",
       elixir: "~> 1.6",
       description: "Ethereum's Blockchain Manager",
       package: [
@@ -41,15 +41,15 @@ defmodule Blockchain.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:libsecp256k1, "~> 0.1.9"},
+      {:libsecp256k1, "~> 0.1.10"},
       {:keccakf1600, "~> 2.0.0", hex: :keccakf1600_orig},
-      {:credo, "~>  0.9.1", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
-      {:merkle_patricia_tree, "~> 0.2.6"},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:ex_rlp, "~> 0.2.1"},
+      {:credo, "~>  1.4.0", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.22.1", only: :dev, runtime: false},
+      {:merkle_patricia_tree, "~> 0.2.8"},
+      {:dialyxir, "~> 1.0.0", only: [:dev], runtime: false},
+      {:ex_rlp, "~> 0.5.3"},
       {:evm, "~> 0.1.14"},
-      {:poison, "~> 3.1.0"}
+      {:poison, "~> 4.0.1"}
     ]
   end
 end
