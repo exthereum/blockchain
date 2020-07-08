@@ -16,7 +16,7 @@ by adding `blockchain` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:blockchain, "~> 0.1.6"}]
+  [{:blockchain, "~> 0.1.8"}]
 end
 ```
 
@@ -64,6 +64,11 @@ Enter a debug command or type `h` for help.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+### Running tests
+1. Register `ethereum/tests` submodule (`git submodule init`)
+2. Grab submodule files (`git submodule update`)
+3. Run tests (`mix test`)
 
 ## Author
 
